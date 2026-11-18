@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+*.log
+.vercel
+__pycache__/
+docs/paper/*.aux
+docs/paper/*.log
+docs/paper/*.out

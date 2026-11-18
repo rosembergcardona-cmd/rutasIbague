@@ -1,0 +1,29 @@
+stop_id,stop_name,stop_lat,stop_lon,location_type
+S01,Plaza de Bolívar (Centro),4.44470,-75.24240,0
+S02,La Pola,4.44650,-75.23850,0
+S03,Belén,4.44900,-75.23500,0
+S04,Calambeo,4.45600,-75.23800,0
+S05,Terminal de Transportes,4.43850,-75.23650,0
+S06,Parque Centenario,4.44100,-75.23300,0
+S07,Hospital Federico Lleras,4.43700,-75.22900,0
+S08,Ricaurte,4.43100,-75.24700,0
+S09,Boquerón,4.42250,-75.25600,0
+S10,Universidad del Tolima,4.42850,-75.21400,0
+S11,Estadio Murillo Toro,4.43350,-75.21850,0
+S12,Calle 37 – Av. Quinta,4.44050,-75.22400,0
+S13,Calle 42 – Av. Quinta,4.44150,-75.21700,0
+S14,Av. Ambalá – Calle 42,4.44750,-75.22000,0
+S15,Universidad de Ibagué,4.45100,-75.20100,0
+S16,C.C. La Estación (Calle 60),4.44250,-75.20500,0
+S17,Multicentro,4.44400,-75.19900,0
+S18,Av. Guabinal,4.43600,-75.20800,0
+S19,Acqua Power Center,4.44700,-75.19300,0
+S20,Jordán,4.44300,-75.18700,0
+S21,El Salado,4.46900,-75.17200,0
+S22,Calle 80 – Av. Mirolindo,4.43400,-75.18300,0
+S23,Mirolindo,4.42700,-75.17000,0
+S24,Picaleña,4.41200,-75.15200,0
+S25,Aeropuerto Perales,4.42200,-75.13350,0
+S26,Ambalá,4.45800,-75.19500,0
+S27,Cádiz,4.43800,-75.21200,0
+S28,Varsovia,4.44200,-75.17800,0

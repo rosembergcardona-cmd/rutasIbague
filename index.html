@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RutaIbagué</title>
+<meta name="description" content="Agente inteligente que recomienda qué bus tomar en Ibagué, Tolima, usando búsqueda A* y una función de utilidad.">
+<meta name="theme-color" content="#13233a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+<aside>
+ <div class="topline">
+  <div class="brand">
+   <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21l1.5-4M16 21l-1.5-4"/><circle cx="8" cy="14" r=".6" fill="#1a1400"/><circle cx="16" cy="14" r=".6" fill="#1a1400"/></svg></div>
+   <h1>Ruta<span>Ibagué</span></h1>
+  </div>
+  <button type="button" class="help" id="helpBtn">¿Cómo funciona?</button>
+ </div>
+ <p class="tag">Tu agente para saber qué bus tomar en Ibagué, Tolima.</p>
+ <span class="badge">v1.0 · RED PILOTO CON DATOS DE MUESTRA</span>
+ <form id="f" autocomplete="off">
+  <div class="stopsbox">
+   <span class="pin a" aria-hidden="true"></span>
+   <div><label class="fl" for="oq">Desde</label>
+    <div class="field"><input id="oq" list="places" placeholder="Paradero, lugar o dirección" enterkeyhint="search">
+     <button type="button" class="ibtn" id="locBtn" title="Usar mi ubicación" aria-label="Usar mi ubicación"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button></div></div>
+   <button type="button" class="swap" id="sw" aria-label="Intercambiar origen y destino">⇅</button>
+   <span class="vline" aria-hidden="true"></span><span></span>
+   <span class="pin b" aria-hidden="true"></span>
+   <div><label class="fl" for="dq">Hasta</label>
+    <div class="field"><input id="dq" list="places" placeholder="Paradero, lugar o dirección" enterkeyhint="search"></div></div>
+  </div>
+  <datalist id="places"></datalist>
+  <p class="status" id="status" role="status"></p>
+  <p class="hint">También puedes tocar el mapa: el primer toque marca el origen y el segundo el destino. Arrastra el mapa para moverlo.</p>
+  <div>
+   <div class="timebox"><label class="fl" for="h">Hora de salida</label><span class="per" id="cv"></span></div>
+   <div class="clockrow"><span class="clock" id="hv"></span><button type="button" class="now" id="nowBtn">Salir ahora</button></div>
+   <input type="range" id="h" min="5" max="23.75" step="0.25" value="7.5">
+  </div>
+  <div>
+   <span class="fl" id="ml">Preferencia</span>
+   <div class="chips" role="radiogroup" aria-labelledby="ml">
+    <input type="radio" name="m" id="m1" value="fastest" checked><label for="m1">Más rápida</label>
+    <input type="radio" name="m" id="m2" value="transfers"><label for="m2">Menos transbordos</label>
+    <input type="radio" name="m" id="m3" value="walking"><label for="m3">Menos caminata</label>
+   </div>
+  </div>
+  <button class="go" type="submit">Buscar mi bus</button>
+ </form>
+ <div id="result" aria-live="polite"></div>
+</aside>
+
+<main>
+ <section class="mapcard" aria-label="Mapa">
+  <div class="maptop"><h2 id="netTitle">Red piloto</h2><div class="rchips" id="lg" aria-label="Rutas"></div></div>
+  <div class="mapwrap">
+   <svg id="map" role="img" aria-label="Mapa de la red de buses de Ibagué"></svg>
+   <label class="layer"><input type="checkbox" id="tilesChk" checked> Calles</label>
+   <div class="mapctl"><button type="button" id="zin" aria-label="Acercar">+</button><button type="button" id="zout" aria-label="Alejar">−</button><button type="button" id="zreset" aria-label="Ver toda la red">⟲</button></div>
+   <div class="attr">Mapa base © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores de OpenStreetMap</a></div>
+   <div id="tip" hidden></div>
+  </div>
+  <div class="mapfoot">Toca una ruta arriba para resaltarla y ver sus paraderos. Las posiciones de los paraderos son aproximadas.</div>
+ </section>
+ <div class="cards">
+  <section class="card" id="rinfo"></section>
+  <section class="card">
+   <h2>Cómo decide el agente</h2>
+   <dl>
+    <dt>Percibe</dt><dd>Origen, destino, hora de salida (hora pico, valle o noche) y la red de rutas en formato GTFS.</dd>
+    <dt>Razona</dt><dd>Búsqueda A* sobre un grafo de paraderos y rutas. Costo = caminar + esperar + viajar + penalización por transbordo, según tu preferencia.</dd>
+    <dt>Actúa</dt><dd>Te da el mejor viaje paso a paso, la hora de llegada con un rango y dos alternativas.</dd>
+    <dt>Se abstiene</dt><dd>Si no hay paradero a menos de 800 m o no hay servicio, lo dice en vez de adivinar.</dd>
+   </dl>
+  </section>
+  <section class="card">
+   <h2>Sobre los datos</h2>
+   <p>La red piloto tiene <strong id="nStops">28</strong> paraderos y <strong id="nRoutes">8</strong> rutas. Son <strong>datos de muestra</strong>: las rutas son ilustrativas, no las oficiales de las empresas, y los tiempos son estimaciones del modelo.</p>
+   <p>Los datos están en formato GTFS (<code>data/gtfs/</code>). Para usar rutas reales basta con reemplazar esos archivos.</p>
+  </section>
+ </div>
+ <p class="foot">RutaIbagué · Sistemas Inteligentes · Universidad de Ibagué · Rosemberg Cardona · <a id="repoLink" href="https://github.com/rosembergcardona-cmd/rutasIbague" target="_blank" rel="noopener">Código en GitHub</a></p>
+</main>
+</div>
+
+<dialog id="helpDlg" aria-labelledby="helpTitle">
+ <div class="dlg">
+  <button type="button" class="close" id="helpClose">Cerrar</button>
+  <h2 id="helpTitle">¿Cómo funciona RutaIbagué?</h2>
+  <h3>1. Dinos a dónde vas</h3>
+  <p>Escribe un paradero, un lugar o una dirección (por ejemplo “Calle 60 con Carrera 5”), usa tu ubicación o toca el mapa.</p>
+  <h3>2. El agente busca</h3>
+  <p>El agente representa la red como un grafo de estados: estar en un paradero, o ir en una ruta. Con la búsqueda <strong>A*</strong> encuentra el viaje de menor costo. La heurística es la distancia en línea recta al destino dividida por la velocidad máxima; como nunca sobreestima, el viaje encontrado es óptimo.</p>
+  <h3>3. Decide según tu preferencia</h3>
+  <p>El costo suma caminata, espera, viaje y una penalización por transbordo. “Más rápida” penaliza 3 min por transbordo, “Menos transbordos” 12 min y “Menos caminata” multiplica la caminata por 2,5.</p>
+  <h3>4. Te dice cuánto confiar</h3>
+  <p>La velocidad del bus depende de la hora (13 km/h en hora pico, 19 en hora valle, 22 de noche) y el tiempo se muestra con un rango. Si no hay datos para tu viaje, el agente se abstiene.</p>
+  <h3>Limitaciones</h3>
+  <p>La red es de muestra. Las posiciones de los paraderos son aproximadas y las velocidades son supuestos que deben calibrarse con viajes reales.</p>
+ </div>
+</dialog>
+
+<script src="js/data-bundle.js"></script>
+<script src="js/gtfs.js"></script>
+<script src="js/agent.js"></script>
+<script src="js/map.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

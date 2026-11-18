@@ -1,0 +1,9 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color,route_text_color
+R1,PILOT,R1,Centro – Picaleña,3,1F6FEB,FFFFFF
+R2,PILOT,R2,Centro – El Salado,3,D1495B,FFFFFF
+R3,PILOT,R3,Terminal – Jordán,3,2A9D8F,FFFFFF
+R4,PILOT,R4,Ricaurte – Aeropuerto,3,E09F3E,FFFFFF
+R5,PILOT,R5,Calambeo – Terminal,3,7B2CBF,FFFFFF
+R6,PILOT,R6,Boquerón – Unibagué,3,6A994E,FFFFFF
+R7,PILOT,R7,El Salado – Picaleña,3,BC6C25,FFFFFF
+R8,PILOT,R8,Calambeo – Jordán,3,457B9D,FFFFFF

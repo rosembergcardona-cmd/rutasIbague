@@ -1,0 +1,2 @@
+feed_publisher_name,feed_publisher_url,feed_lang,feed_version
+RutaIbagué – Universidad de Ibagué (proyecto académico),https://github.com/,es,pilot-1.0

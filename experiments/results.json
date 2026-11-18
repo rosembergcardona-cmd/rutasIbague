@@ -1,0 +1,129 @@
+{
+ "network": {
+  "stops": 28,
+  "routes": 8,
+  "patterns": 16,
+  "pairs": 756
+ },
+ "e1": {
+  "peak": {
+   "optimalPct": 100,
+   "expA": 36.57539682539682,
+   "expD": 65.72751322751323,
+   "reductionPct": 44.35298852887905,
+   "msA": 0.0964316798941796,
+   "msD": 0.13046969047619078,
+   "msA95": 0.2474199999999982,
+   "meanTripMin": 41.44685851421651
+  },
+  "offpeak": {
+   "optimalPct": 100,
+   "expA": 36.866402116402114,
+   "expD": 63.48412698412698,
+   "reductionPct": 41.92815768637747,
+   "msA": 0.07764742328042357,
+   "msD": 0.09727299206349077,
+   "msA95": 0.18104500000001167,
+   "meanTripMin": 32.61584886500633
+  },
+  "night": {
+   "optimalPct": 100,
+   "expA": 33.767195767195766,
+   "expD": 53.35978835978836,
+   "reductionPct": 36.71789786812097,
+   "msA": 0.06188729100528994,
+   "msD": 0.07254353042328067,
+   "msA95": 0.15160399999996343,
+   "meanTripMin": 37.94227490985151
+  }
+ },
+ "e2": {
+  "directCoveragePct": 44.44444444444444,
+  "agentCoveragePct": 100,
+  "improvedPctWhenDirect": 7.142857142857143,
+  "meanGainMinWhenDirect": 0.2016279859639337,
+  "maxGainMinWhenDirect": 8.845144759528573,
+  "transferDist": [
+   65.60846560846561,
+   30.158730158730158,
+   3.9682539682539684,
+   0.26455026455026454
+  ]
+ },
+ "e3": {
+  "n": 500,
+  "bus": 273,
+  "walk": 93,
+  "abstain": 134,
+  "modes": {
+   "fastest": {
+    "n": 273,
+    "total": 43.91709745033408,
+    "transfers": 0.315018315018315,
+    "walkM": 803.1932773954765
+   },
+   "transfers": {
+    "n": 273,
+    "total": 44.719217402658984,
+    "transfers": 0.2087912087912088,
+    "walkM": 968.0474601947458
+   },
+   "walking": {
+    "n": 273,
+    "total": 44.2796211041914,
+    "transfers": 0.4432234432234432,
+    "walkM": 730.8384062744071
+   }
+  }
+ },
+ "e4": {
+  "6": {
+   "period": "peak",
+   "meanTotal": 41.44685851421651,
+   "meanWait": 8.104497354497354,
+   "meanRangeWidth": 23.87570577026059
+  },
+  "7": {
+   "period": "peak",
+   "meanTotal": 41.44685851421651,
+   "meanWait": 8.104497354497354,
+   "meanRangeWidth": 23.87570577026059
+  },
+  "9": {
+   "period": "offpeak",
+   "meanTotal": 32.61584886500633,
+   "meanWait": 8.457671957671957,
+   "meanRangeWidth": 15.478991838643507
+  },
+  "12": {
+   "period": "peak",
+   "meanTotal": 41.44685851421651,
+   "meanWait": 8.104497354497354,
+   "meanRangeWidth": 23.87570577026059
+  },
+  "15": {
+   "period": "offpeak",
+   "meanTotal": 32.61584886500633,
+   "meanWait": 8.457671957671957,
+   "meanRangeWidth": 15.478991838643507
+  },
+  "18": {
+   "period": "peak",
+   "meanTotal": 41.44685851421651,
+   "meanWait": 8.104497354497354,
+   "meanRangeWidth": 23.87570577026059
+  },
+  "20": {
+   "period": "offpeak",
+   "meanTotal": 32.61584886500633,
+   "meanWait": 8.457671957671957,
+   "meanRangeWidth": 15.478991838643507
+  },
+  "22": {
+   "period": "night",
+   "meanTotal": 37.94227490985151,
+   "meanWait": 13.19047619047619,
+   "meanRangeWidth": 21.040319802645786
+  }
+ }
+}

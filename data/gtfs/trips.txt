@@ -1,0 +1,17 @@
+route_id,service_id,trip_id,trip_headsign,direction_id
+R1,DIARIO,R1_0,Picaleña,0
+R1,DIARIO,R1_1,Plaza de Bolívar (Centro),1
+R2,DIARIO,R2_0,El Salado,0
+R2,DIARIO,R2_1,Plaza de Bolívar (Centro),1
+R3,DIARIO,R3_0,Jordán,0
+R3,DIARIO,R3_1,Terminal de Transportes,1
+R4,DIARIO,R4_0,Aeropuerto Perales,0
+R4,DIARIO,R4_1,Ricaurte,1
+R5,DIARIO,R5_0,Terminal de Transportes,0
+R5,DIARIO,R5_1,Calambeo,1
+R6,DIARIO,R6_0,Universidad de Ibagué,0
+R6,DIARIO,R6_1,Boquerón,1
+R7,DIARIO,R7_0,Picaleña,0
+R7,DIARIO,R7_1,El Salado,1
+R8,DIARIO,R8_0,Jordán,0
+R8,DIARIO,R8_1,Calambeo,1

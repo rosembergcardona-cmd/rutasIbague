@@ -1,0 +1,14 @@
+{
+  "name": "rutaibague",
+  "version": "1.0.0",
+  "description": "Intelligent agent that recommends which bus to take in Ibagué, Colombia (A* search + utility).",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node --test tests/agent.test.js",
+    "build:data": "node tools/build_gtfs.js && node tools/bundle_data.js",
+    "experiments": "node experiments/run_experiments.js && python3 experiments/figures.py"
+  },
+  "engines": { "node": ">=18" }
+}
