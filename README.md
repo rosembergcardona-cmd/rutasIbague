@@ -7,7 +7,7 @@ Course project, Intelligent Systems (Sistemas Inteligentes), Universidad de Ibag
 
 ![RutaIbagué](docs/screenshot.png)
 
-- **Live app (Vercel):** VERCEL_URL
+- **Live app (Vercel):** https://rutasibague.vercel.app
 - **Paper:** [`docs/paper/paper.pdf`](docs/paper/paper.pdf)
 - **Dataset and promotional video (Google Drive):** https://drive.google.com/drive/folders/1dqNyADbWHi20WrNFY8ZSJ-veMudIHfCv
 - **Dataset in this repository:** [`data/`](data/)
